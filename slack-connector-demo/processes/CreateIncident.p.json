@@ -1,0 +1,167 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "19E169BD7CD31E4C",
+  "config" : {
+    "data" : "com.axonivy.connector.slack.demo.CreateIncidentData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "createIncident",
+      "config" : {
+        "signature" : "createIncident"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "S10" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 560, "y" : 64 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "RequestStart",
+      "name" : "trriggerFromSlack",
+      "config" : {
+        "signature" : "trriggerFromSlack"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 168 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "S10", "via" : [ { "x" : 328, "y" : 168 } ] }
+      ]
+    }, {
+      "id" : "S10",
+      "type" : "UserBpmnElement",
+      "name" : "Incident Details",
+      "elements" : [ {
+          "id" : "S10-g0",
+          "type" : "EmbeddedStart",
+          "name" : "manual",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 256 },
+            "labelOffset" : { "x" : 11, "y" : 27 }
+          },
+          "parentConnector" : "f2",
+          "connect" : [
+            { "id" : "S10-f0", "to" : "S10-f5" }
+          ]
+        }, {
+          "id" : "S10-g1",
+          "type" : "EmbeddedEnd",
+          "visual" : {
+            "at" : { "x" : 920, "y" : 256 },
+            "labelOffset" : { "x" : 3, "y" : 23 }
+          },
+          "parentConnector" : "f5"
+        }, {
+          "id" : "S10-f4",
+          "type" : "DialogCall",
+          "name" : "Incident Detail Task",
+          "config" : {
+            "dialog" : "com.axonivy.connector.slack.IncidentDetailDialog:start(String)",
+            "call" : {
+              "map" : {
+                "param.severity" : "in.severity"
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 784, "y" : 256 }
+          },
+          "connect" : [
+            { "id" : "S10-f1", "to" : "S10-g1", "color" : "default" }
+          ]
+        }, {
+          "id" : "S10-f2",
+          "type" : "TaskSwitchEvent",
+          "name" : "Incident Details Task",
+          "config" : {
+            "task" : {
+              "name" : "Incident Detail"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 640, "y" : 256 },
+            "labelOffset" : { "x" : 14, "y" : 34 }
+          },
+          "connect" : [
+            { "id" : "S10-f11", "to" : "S10-f4" }
+          ]
+        }, {
+          "id" : "S10-g2",
+          "type" : "EmbeddedStart",
+          "name" : "from Slack",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 328 },
+            "labelOffset" : { "x" : 11, "y" : 35 }
+          },
+          "parentConnector" : "f4",
+          "connect" : [
+            { "id" : "S10-f9", "to" : "S10-f5", "via" : [ { "x" : 200, "y" : 328 } ] }
+          ]
+        }, {
+          "id" : "S10-f5",
+          "type" : "Alternative",
+          "visual" : {
+            "at" : { "x" : 200, "y" : 256 },
+            "labelOffset" : { "x" : 14, "y" : 34 }
+          },
+          "connect" : [
+            { "id" : "S10-f6", "to" : "S10-f8", "color" : "default" }
+          ]
+        }, {
+          "id" : "S10-f8",
+          "type" : "Script",
+          "name" : "extract severity",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import com.axonivy.connector.slack.connector.SeverityLevel;",
+                "import com.axonivy.connector.slack.service.SlackSlashCommandService;",
+                "SlackSlashCommandService sevice = new SlackSlashCommandService();",
+                "in.slackSlashCommand = sevice.fromCurrentRequest();"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 352, "y" : 256 }
+          },
+          "connect" : [
+            { "id" : "S10-f7", "to" : "S10-f10", "color" : "default" }
+          ]
+        }, {
+          "id" : "S10-f10",
+          "type" : "SubProcessCall",
+          "name" : "Send response to Slack",
+          "config" : {
+            "processCall" : "SendMessageToSlack:call(com.axonivy.connector.slack.dto.SlackSlashCommand)",
+            "call" : {
+              "map" : {
+                "param.slackSlashCommand" : "in.slackSlashCommand",
+                "param.slackSlashCommand.text" : "\"Task with id: \" + ivy.task.uuid() + \" is created with severity: \" + in.severity"
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 512, "y" : 256 }
+          },
+          "connect" : [
+            { "id" : "S10-f3", "to" : "S10-f2", "color" : "default" }
+          ]
+        } ],
+      "visual" : {
+        "at" : { "x" : 328, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f5", "to" : "f1" }
+      ]
+    } ]
+}
