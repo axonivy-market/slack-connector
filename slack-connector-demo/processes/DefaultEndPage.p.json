@@ -15,6 +15,9 @@
             { "name" : "endedTaskId", "type" : "Number", "desc" : "" }
           ],
           "map" : { }
+        },
+        "request" : {
+          "isVisibleOnStartList" : false
         }
       },
       "visual" : {

@@ -3,10 +3,16 @@
   "simpleName" : "SendBotMessageData",
   "namespace" : "com.axonivy.connector.slack",
   "fields" : [ {
-    "name" : "channelId"
+    "name" : "channelId",
+    "type": "String",
+    "modifiers" : [ ]
   }, {
-    "name" : "message"
+    "name" : "message",
+    "type": "String",
+    "modifiers" : [ ]
   }, {
-    "name" : "botToken"
+    "name" : "botToken",
+    "type": "String",
+    "modifiers" : [ ]
   } ]
 }

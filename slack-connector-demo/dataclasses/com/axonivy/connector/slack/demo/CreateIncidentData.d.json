@@ -3,11 +3,13 @@
   "simpleName" : "CreateIncidentData",
   "namespace" : "com.axonivy.connector.slack.demo",
   "fields" : [ {
-    "name" : "severity"
+    "name" : "severity",
+    "type": "String"
   }, {
     "name" : "slackSlashCommand",
     "type" : "com.axonivy.connector.slack.dto.SlackSlashCommand"
   }, {
-    "name" : "responsible"
+    "name" : "responsible",
+    "type": "String"
   } ]
 }

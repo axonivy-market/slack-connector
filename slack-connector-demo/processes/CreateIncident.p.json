@@ -27,9 +27,9 @@
     }, {
       "id" : "f3",
       "type" : "RequestStart",
-      "name" : "trriggerFromSlack",
+      "name" : "triggerFromSlack",
       "config" : {
-        "signature" : "trriggerFromSlack",
+        "signature" : "triggerFromSlack",
         "request" : {
           "isVisibleOnStartList" : false
         }
@@ -60,7 +60,7 @@
           "id" : "S10-g1",
           "type" : "EmbeddedEnd",
           "visual" : {
-            "at" : { "x" : 1048, "y" : 256 },
+            "at" : { "x" : 984, "y" : 256 },
             "labelOffset" : { "x" : 3, "y" : 23 }
           },
           "parentConnector" : "f5"
@@ -84,7 +84,7 @@
             }
           },
           "visual" : {
-            "at" : { "x" : 888, "y" : 256 }
+            "at" : { "x" : 832, "y" : 256 }
           },
           "connect" : [
             { "id" : "S10-f1", "to" : "S10-g1" }
@@ -99,7 +99,7 @@
             }
           },
           "visual" : {
-            "at" : { "x" : 704, "y" : 256 },
+            "at" : { "x" : 672, "y" : 256 },
             "labelOffset" : { "x" : 14, "y" : 34 }
           },
           "connect" : [
@@ -138,8 +138,8 @@
                 "import com.axonivy.connector.slack.service.SlackSlashCommandService;",
                 "SlackSlashCommandService sevice = new SlackSlashCommandService();",
                 "in.slackSlashCommand = sevice.fromCurrentRequest();",
-                "in.severity = in.slackSlashCommand.text;",
-                "ivy.case.customFields().stringField(\"channel\").set(in.slackSlashCommand.channelId);"
+                "in.severity = SeverityLevel.fromValue(in.slackSlashCommand.text).getValue();",
+                "ivy.case.customFields().stringField(\"channel\").set(in.slackSlashCommand.channelId);",
               ]
             }
           },
