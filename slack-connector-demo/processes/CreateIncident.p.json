@@ -29,7 +29,10 @@
       "type" : "RequestStart",
       "name" : "trriggerFromSlack",
       "config" : {
-        "signature" : "trriggerFromSlack"
+        "signature" : "trriggerFromSlack",
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 168 }
@@ -47,7 +50,7 @@
           "name" : "manual",
           "visual" : {
             "at" : { "x" : 64, "y" : 256 },
-            "labelOffset" : { "x" : 11, "y" : 27 }
+            "labelOffset" : { "x" : 11, "y" : 35 }
           },
           "parentConnector" : "f2",
           "connect" : [
@@ -57,7 +60,7 @@
           "id" : "S10-g1",
           "type" : "EmbeddedEnd",
           "visual" : {
-            "at" : { "x" : 920, "y" : 256 },
+            "at" : { "x" : 1048, "y" : 256 },
             "labelOffset" : { "x" : 3, "y" : 23 }
           },
           "parentConnector" : "f5"
@@ -66,18 +69,25 @@
           "type" : "DialogCall",
           "name" : "Incident Detail Task",
           "config" : {
-            "dialog" : "com.axonivy.connector.slack.IncidentDetailDialog:start(String)",
+            "dialog" : "com.axonivy.connector.slack.IncidentDetailDialog:start(String,String)",
             "call" : {
               "map" : {
-                "param.severity" : "in.severity"
+                "param.severity" : "in.severity",
+                "param.channel" : "in.slackSlashCommand.channelId"
+              }
+            },
+            "output" : {
+              "map" : {
+                "out" : "in",
+                "out.responsible" : "out.responsible"
               }
             }
           },
           "visual" : {
-            "at" : { "x" : 784, "y" : 256 }
+            "at" : { "x" : 888, "y" : 256 }
           },
           "connect" : [
-            { "id" : "S10-f1", "to" : "S10-g1", "color" : "default" }
+            { "id" : "S10-f1", "to" : "S10-g1" }
           ]
         }, {
           "id" : "S10-f2",
@@ -89,7 +99,7 @@
             }
           },
           "visual" : {
-            "at" : { "x" : 640, "y" : 256 },
+            "at" : { "x" : 704, "y" : 256 },
             "labelOffset" : { "x" : 14, "y" : 34 }
           },
           "connect" : [
@@ -124,10 +134,12 @@
           "config" : {
             "output" : {
               "code" : [
-                "import com.axonivy.connector.slack.connector.SeverityLevel;",
+                "import com.axonivy.connector.slack.SeverityLevel;",
                 "import com.axonivy.connector.slack.service.SlackSlashCommandService;",
                 "SlackSlashCommandService sevice = new SlackSlashCommandService();",
-                "in.slackSlashCommand = sevice.fromCurrentRequest();"
+                "in.slackSlashCommand = sevice.fromCurrentRequest();",
+                "in.severity = in.slackSlashCommand.text;",
+                "ivy.case.customFields().stringField(\"channel\").set(in.slackSlashCommand.channelId);"
               ]
             }
           },
@@ -135,26 +147,25 @@
             "at" : { "x" : 352, "y" : 256 }
           },
           "connect" : [
-            { "id" : "S10-f7", "to" : "S10-f10", "color" : "default" }
+            { "id" : "S10-f3", "to" : "S10-f7" }
           ]
         }, {
-          "id" : "S10-f10",
-          "type" : "SubProcessCall",
-          "name" : "Send response to Slack",
+          "id" : "S10-f7",
+          "type" : "Script",
+          "name" : "Processing Notification",
           "config" : {
-            "processCall" : "SendMessageToSlack:call(com.axonivy.connector.slack.dto.SlackSlashCommand)",
-            "call" : {
-              "map" : {
-                "param.slackSlashCommand" : "in.slackSlashCommand",
-                "param.slackSlashCommand.text" : "\"Task with id: \" + ivy.task.uuid() + \" is created with severity: \" + in.severity"
-              }
+            "output" : {
+              "code" : [
+                "import com.axonivy.connector.slack.service.MessageService;",
+                "MessageService.sendBotMessageToSlack(in.slackSlashCommand.getChannelName(), \"Processing incident request...\");"
+              ]
             }
           },
           "visual" : {
             "at" : { "x" : 512, "y" : 256 }
           },
           "connect" : [
-            { "id" : "S10-f3", "to" : "S10-f2", "color" : "default" }
+            { "id" : "S10-f10", "to" : "S10-f2", "color" : "default" }
           ]
         } ],
       "visual" : {

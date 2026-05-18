@@ -1,0 +1,34 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "19E1B361A1578F18",
+  "config" : {
+    "data" : "com.axonivy.connector.slack.demo.DefaultEndPageData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "DefaultEndPage.ivp",
+      "config" : {
+        "signature" : "DefaultEndPage",
+        "input" : {
+          "params" : [
+            { "name" : "endedTaskId", "type" : "Number", "desc" : "" }
+          ],
+          "map" : { }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Do nothing",
+      "visual" : {
+        "at" : { "x" : 288, "y" : 64 }
+      }
+    } ]
+}

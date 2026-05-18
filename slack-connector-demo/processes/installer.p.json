@@ -1,0 +1,20 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "19E3A04D42DAB8C9",
+  "config" : {
+    "data" : "com.axonivy.connector.slack.demo.installerData"
+  },
+  "elements" : [ {
+      "id" : "f3",
+      "type" : "ProgramStart",
+      "name" : "Task listener",
+      "config" : {
+        "javaClass" : "com.axonivy.connector.slack.notification.SlackNotificationStart",
+        "link" : "eventLink.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 16, "y" : 16 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    } ]
+}

@@ -3,9 +3,10 @@
   "simpleName" : "IncidentDetailDialogData",
   "namespace" : "com.axonivy.connector.slack.IncidentDetailDialog",
   "fields" : [ {
-    "name" : "slashCommandData",
-    "type" : "com.axonivy.connector.slack.dto.SlackSlashCommand"
+    "name" : "channel"
   }, {
     "name" : "severity"
+  }, {
+    "name" : "responsible"
   } ]
 }

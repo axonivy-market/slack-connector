@@ -8,9 +8,9 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "call(String,String,String)",
+      "name" : "sendBotMessage(String,String,String)",
       "config" : {
-        "signature" : "call",
+        "signature" : "sendBotMessage",
         "input" : {
           "params" : [
             { "name" : "message", "type" : "String", "desc" : "" },
