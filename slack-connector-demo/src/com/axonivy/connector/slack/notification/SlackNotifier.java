@@ -2,6 +2,7 @@ package com.axonivy.connector.slack.notification;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.connector.slack.enums.CustomField;
 import com.axonivy.connector.slack.listener.NewTaskAssignmentListener;
 import com.axonivy.connector.slack.service.MessageService;
 
@@ -29,7 +30,7 @@ public class SlackNotifier extends NewTaskAssignmentListener {
 	}
 
 	private void notifyToChannel(ITask newTask) {
-		String channel = newTask.getCase().customFields().stringField("channel").getOrDefault(StringUtils.EMPTY);
+		String channel = newTask.getCase().customFields().stringField(CustomField.CHANNEL.getFieldName()).getOrDefault(StringUtils.EMPTY);
 
 		MessageService.sendBotMessageToSlack(channel, prepareIncomingWebhookParameter(newTask, channel));
 	}

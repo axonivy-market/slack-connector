@@ -39,7 +39,7 @@ public class SlashCommandService {
 		} catch (Exception e) {
 			Ivy.log().error("startProcess async failed", e);
 		}
-		return String.format("Process CheckTeamAbsences has been started by user: ", user);
+		return String.format("Process CreateIncident has been started by user: %s", user);
 	}
 
 	@POST

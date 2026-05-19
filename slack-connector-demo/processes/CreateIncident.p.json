@@ -104,10 +104,11 @@
           "config" : {
             "output" : {
               "code" : [
-                "import com.axonivy.connector.slack.SeverityLevel;",
+                "import com.axonivy.connector.slack.enums.CustomField;",
+                "import com.axonivy.connector.slack.enums.SeverityLevel;",
                 "in.severity = SeverityLevel.fromValue(in.slashCommandData.text).getValue();",
-                "ivy.case.customFields().stringField(\"channel\").set(in.slashCommandData.channelId);",
-                "ivy.case.customFields().stringField(\"severity\").set(in.severity);"
+                "ivy.case.customFields().stringField(CustomField.CHANNEL.getFieldName()).set(in.slashCommandData.channelId);",
+                "ivy.case.customFields().stringField(CustomField.SEVERITY.getFieldName()).set(in.severity);"
               ]
             }
           },

@@ -1,4 +1,4 @@
-package com.axonivy.connector.slack;
+package com.axonivy.connector.slack.enums;
 
 import java.util.Arrays;
 
