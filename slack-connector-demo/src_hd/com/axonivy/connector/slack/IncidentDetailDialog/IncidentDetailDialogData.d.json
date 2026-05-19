@@ -3,13 +3,13 @@
   "simpleName" : "IncidentDetailDialogData",
   "namespace" : "com.axonivy.connector.slack.IncidentDetailDialog",
   "fields" : [ {
-    "name" : "channel",
-    "type": "String"
+    "name" : "channel"
   }, {
-    "name" : "severity",
-    "type": "String"
+    "name" : "severity"
   }, {
-    "name" : "responsible",
-    "type": "String"
+    "name" : "responsible"
+  }, {
+    "name" : "users",
+    "type" : "List<String>"
   } ]
 }

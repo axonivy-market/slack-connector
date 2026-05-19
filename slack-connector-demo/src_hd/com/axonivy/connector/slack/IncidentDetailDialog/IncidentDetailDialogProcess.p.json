@@ -27,7 +27,7 @@
         "at" : { "x" : 96, "y" : 64 }
       },
       "connect" : [
-        { "id" : "f2", "to" : "f1" }
+        { "id" : "f2", "to" : "f13" }
       ]
     }, {
       "id" : "f1",
@@ -124,6 +124,32 @@
       },
       "connect" : [
         { "id" : "f10", "to" : "f8" }
+      ]
+    }, {
+      "id" : "f13",
+      "type" : "Script",
+      "name" : "Init User List",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.IUser;",
+            "import java.util.ArrayList;",
+            "List<String> displayNames = new ArrayList();",
+            "for (IUser user : ivy.security.users().paged().stream().toList()) {",
+            "  String name = user.getDisplayName();",
+            "  if (name != null) {",
+            "    displayNames.add(name);",
+            "  }",
+            "}",
+            "in.users = displayNames;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f14", "to" : "f1", "color" : "default" }
       ]
     } ]
 }

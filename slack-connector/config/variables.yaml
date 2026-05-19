@@ -1,2 +1,13 @@
 # yaml-language-server: $schema=https://json-schema.axonivy.com/app/12.0.0/variables.json
 Variables:
+  com:
+    axonivy:
+      connector:
+        slack:
+          notification:
+            # enables the Mattermost notification for new tasks
+            enabled: "true"
+            # the message of new task will be sent to channel
+            newTaskMessage: The new task %s is created.
+          # the token from slack bot
+          botToken: ""
