@@ -10,3 +10,4 @@ Variables:
             # the message of new task will be sent to channel
             newTaskMessage: The new task %s is created.
           botToken: 
+          # the token from slack bot
