@@ -82,5 +82,15 @@
       "connect" : [
         { "id" : "f4", "to" : "f1", "color" : "default" }
       ]
+    }, {
+      "id" : "f5",
+      "type" : "ErrorStartEvent",
+      "visual" : {
+        "at" : { "x" : 360, "y" : 96 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f1", "via" : [ { "x" : 504, "y" : 96 } ] }
+      ]
     } ]
 }
