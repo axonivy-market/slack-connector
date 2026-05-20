@@ -10,7 +10,7 @@ public class SlackNotificationStart extends AbstractProcessStartEventBean {
 	private SlackNotifier listener;
 
 	public SlackNotificationStart() {
-		super("SlackNotificationStart", "Installs the hook to inform on new Axon Ivy Tasks via Mattermost");
+		super("SlackNotificationStart", "Listenner to trigger a notification to Slack when a Task is created");
 	}
 
 	@Override

@@ -30,7 +30,6 @@ public class SlashCommandService {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public String startProcess(@BeanParam SlashCommandData cmd) {
-		Ivy.log().error(cmd.getUserName());
 		String user = cmd.getUserName() != null ? cmd.getUserName() : "unknown";
 		try {
 			if (cmd != null) {

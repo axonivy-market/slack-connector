@@ -5,9 +5,7 @@ Variables:
       connector:
         slack:
           notification:
-            # enables the Mattermost notification for new tasks
+            # enables the Slack notification for new tasks
             enabled: "true"
-            # the message of new task will be sent to channel
-            newTaskMessage: The new task %s is created.
-          botToken: 
-          # the token from slack bot
+          # the token from Slack bot
+          botToken: ""

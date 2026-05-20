@@ -28,7 +28,7 @@ public class SlackNotifier extends NewTaskAssignmentListener {
 		if (!isEnabled()) {
 			return;
 		}
-		Ivy.log().info("notify new task clients on new teask " + newTask);
+		Ivy.log().info("notify new task clients on new task " + newTask);
 		notifyToChannel(newTask);
 	}
 
