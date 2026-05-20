@@ -12,6 +12,9 @@ import ch.ivyteam.ivy.workflow.IWorkflowManager;
 
 public class SlackNotifier extends NewTaskAssignmentListener {
 
+	private static final String NEW_TASK_MESSAGE = "An Axon Ivy task has been created successfully.\r\n"
+			+ "Click %s to open the task in a simple UI and either reject or confirm the request";
+
 	public SlackNotifier() {
 		super(IWorkflowManager.instance());
 		taskHandler(this::notifyNewTask);
@@ -30,13 +33,14 @@ public class SlackNotifier extends NewTaskAssignmentListener {
 	}
 
 	private void notifyToChannel(ITask newTask) {
-		String channel = newTask.getCase().customFields().stringField(CustomField.CHANNEL.getFieldName()).getOrDefault(StringUtils.EMPTY);
+		String channel = newTask.getCase().customFields().stringField(CustomField.CHANNEL.getFieldName())
+				.getOrDefault(StringUtils.EMPTY);
 
 		MessageService.sendBotMessageToSlack(channel, prepareIncomingWebhookParameter(newTask, channel));
 	}
 
 	private String prepareIncomingWebhookParameter(ITask newTask, String channel) {
 		String newTaskLinkTxt = String.format("<%s|%s>", newTask.getStartLink().getAbsolute(), newTask.getName());
-		return String.format(Ivy.var().get("com.axonivy.connector.slack.notification.newTaskMessage"), newTaskLinkTxt);
+		return String.format(NEW_TASK_MESSAGE, newTaskLinkTxt);
 	}
 }

@@ -31,14 +31,14 @@
           "id" : "S10-g1",
           "type" : "EmbeddedEnd",
           "visual" : {
-            "at" : { "x" : 984, "y" : 256 },
+            "at" : { "x" : 840, "y" : 256 },
             "labelOffset" : { "x" : 3, "y" : 23 }
           },
           "parentConnector" : "f5"
         }, {
           "id" : "S10-f4",
           "type" : "DialogCall",
-          "name" : "Incident Detail Task",
+          "name" : "OpenApproval Task",
           "config" : {
             "dialog" : "com.axonivy.connector.slack.IncidentDetailDialog:start(String,String)",
             "call" : {
@@ -55,7 +55,8 @@
             }
           },
           "visual" : {
-            "at" : { "x" : 832, "y" : 256 }
+            "at" : { "x" : 696, "y" : 256 },
+            "size" : { "width" : 128, "height" : 54 }
           },
           "connect" : [
             { "id" : "S10-f1", "to" : "S10-g1" }
@@ -63,15 +64,14 @@
         }, {
           "id" : "S10-f2",
           "type" : "TaskSwitchEvent",
-          "name" : "Incident Details Task",
+          "name" : "Open Approval Task",
           "config" : {
             "task" : {
-              "name" : "Incident Detail"
+              "name" : "Open Approval Task"
             }
           },
           "visual" : {
-            "at" : { "x" : 672, "y" : 256 },
-            "labelOffset" : { "x" : 14, "y" : 34 }
+            "at" : { "x" : 528, "y" : 256 }
           },
           "connect" : [
             { "id" : "S10-f11", "to" : "S10-f4" }
@@ -116,25 +116,7 @@
             "at" : { "x" : 352, "y" : 256 }
           },
           "connect" : [
-            { "id" : "S10-f3", "to" : "S10-f7" }
-          ]
-        }, {
-          "id" : "S10-f7",
-          "type" : "Script",
-          "name" : "Processing Notification",
-          "config" : {
-            "output" : {
-              "code" : [
-                "import com.axonivy.connector.slack.service.MessageService;",
-                "MessageService.sendBotMessageToSlack(in.slashCommandData.getChannelName(), \"Processing incident request...\");"
-              ]
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 512, "y" : 256 }
-          },
-          "connect" : [
-            { "id" : "S10-f10", "to" : "S10-f2", "color" : "default" }
+            { "id" : "S10-f3", "to" : "S10-f2" }
           ]
         } ],
       "visual" : {

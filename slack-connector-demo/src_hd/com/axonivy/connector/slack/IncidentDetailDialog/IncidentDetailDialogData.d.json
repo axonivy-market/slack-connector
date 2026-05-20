@@ -8,8 +8,5 @@
     "name" : "severity"
   }, {
     "name" : "responsible"
-  }, {
-    "name" : "users",
-    "type" : "List<String>"
   } ]
 }

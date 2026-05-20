@@ -27,7 +27,7 @@
         "at" : { "x" : 96, "y" : 64 }
       },
       "connect" : [
-        { "id" : "f2", "to" : "f13" }
+        { "id" : "f2", "to" : "f1" }
       ]
     }, {
       "id" : "f1",
@@ -70,7 +70,7 @@
         "output" : {
           "code" : [
             "import com.axonivy.connector.slack.service.MessageService;",
-            "MessageService.sendBotMessageToSlack(in.channel, \"Request is approved and assigned to: \" + in.responsible);"
+            "MessageService.sendBotMessageToSlack(in.channel, \"Incident request is approved by user with role: \" + in.responsible);"
           ]
         }
       },
@@ -95,8 +95,7 @@
         "output" : {
           "code" : [
             "import com.axonivy.connector.slack.service.MessageService;",
-            "String displayName = ivy.session.getSessionUserName();",
-            "MessageService.sendBotMessageToSlack(in.channel, \"Incident request is rejected by user: \" + displayName);"
+            "MessageService.sendBotMessageToSlack(in.channel, \"Incident request is rejected by user with role: \" + in.responsible);"
           ]
         }
       },
@@ -124,32 +123,6 @@
       },
       "connect" : [
         { "id" : "f10", "to" : "f8" }
-      ]
-    }, {
-      "id" : "f13",
-      "type" : "Script",
-      "name" : "Init User List",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivyteam.ivy.security.IUser;",
-            "import java.util.ArrayList;",
-            "List<String> displayNames = new ArrayList();",
-            "for (IUser user : ivy.security.users().paged().stream().toList()) {",
-            "  String name = user.getDisplayName();",
-            "  if (name != null) {",
-            "    displayNames.add(name);",
-            "  }",
-            "}",
-            "in.users = displayNames;"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 224, "y" : 64 }
-      },
-      "connect" : [
-        { "id" : "f14", "to" : "f1", "color" : "default" }
       ]
     } ]
 }
