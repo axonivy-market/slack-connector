@@ -4,6 +4,8 @@ Variables:
     axonivy:
       connector:
         slack:
+          # the base url for Slack api
+          baseUrl: "https://slack.com/api"
           notification:
             # enables the Slack notification for new tasks
             enabled: "true"
