@@ -7,6 +7,6 @@ RestClients:
     Features:
     - ch.ivyteam.ivy.rest.client.mapper.JsonFeature
     OpenAPI:
-      SpecUrl: file:///C:/Users/pvquan/Downloads/slack_web_openapi_v2.json
+      SpecUrl: https://github.com/slackapi/slack-api-specs/blob/master/web-api/slack_web_openapi_v2.json
       Namespace: com.slack.api.client
       ResolveFully: true
