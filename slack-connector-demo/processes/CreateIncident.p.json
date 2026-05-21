@@ -137,6 +137,9 @@
           }
         }
       },
+      "tags" : [
+        "demo"
+      ],
       "visual" : {
         "at" : { "x" : 112, "y" : 64 },
         "labelOffset" : { "x" : 13, "y" : 33 }
