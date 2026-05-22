@@ -72,50 +72,43 @@ Variables:
 ```
 
 1. Install the connector artifacts into your Axon Ivy environment.
-   1.1. Import `slack-connector` for the core integration.
-   1.2. Import `slack-connector-demo` as well if you want the sample slash commands, dialog, and task listener.
+
+- Import `slack-connector` for the core integration.
+- Import `slack-connector-demo` as well if you want the sample slash commands, dialog, and task listener.
 
 2. Create the Slack app that will represent the Axon Ivy bot.
-   2.1. Open https://api.slack.com/apps and click **Create New App**.
-   2.2. Choose **From scratch**, enter a name such as `Axon Ivy Bot`, and select the target Slack workspace.
+
+- Open https://api.slack.com/apps and click **Create New App**.
+- Choose **From scratch**, enter a name such as `Axon Ivy Bot`, and select the target Slack workspace.
 
 ![Create a new Slack app from scratch](images/setup-create-new-slack-app.png)
 
 3. Add the bot scopes required by the connector.
-   3.1. Open **OAuth & Permissions** in your Slack app.
-   3.2. Add `chat:write` so the bot can post incident updates.
-   3.3. Add `commands` so Slack can execute the slash commands.
-   3.4. Add `chat:write.public` as well if you want the bot to post to public channels before it is invited.
+
+- Open **OAuth & Permissions** in your Slack app.
+- Add `chat:write` so the bot can post incident updates.
+- Add `commands` so Slack can execute the slash commands.
+- Add `chat:write.public` as well if you want the bot to post to public channels before it is invited.
 
 ![Required Slack bot token scopes](images/setup-add-bot-token-scope.png)
 
 4. Install the app into your workspace and copy the bot token.
-   4.1. Open **Install App** and authorize the app for your workspace.
-   4.2. Copy the **Bot User OAuth Token** shown after installation.
-   4.3. Store that token in the Axon Ivy variable `com.axonivy.connector.slack.botToken`.
-   4.4. Keep the value outside source control and replace local test tokens before sharing the project.
+
+- Open **Install App** and authorize the app for your workspace.
+- Copy the **Bot User OAuth Token** shown after installation.
+- Store that token in the Axon Ivy variable `com.axonivy.connector.slack.botToken`.
+- Keep the value outside source control and replace local test tokens before sharing the project.
 
 ![Install the Slack app and copy the bot token](images/setup-install-slack-app.png)
 
 5. Create the slash commands used by the demo.
-   5.1. Open **Features** -> **Slash Commands** and click **Create New Command**.
-   5.2. Create `/ivy-create-incident` and set the Request URL to your public Axon Ivy application base URL plus `/api/incident/create`.
-   5.3. Use a short description such as `run create Incident process with severity`.
-   5.4. Use a usage hint such as `Low, Medium, High, Critical`.
-   5.5. Create `/ivy-summary-incident` as a second command and point it to `/api/incident/summary` on the same public base URL.
-   5.6. Reinstall the app if Slack asks you to refresh permissions after saving the commands.
+
+- Open **Features** -> **Slash Commands** and click **Create New Command**.
+- Create the slash command eg.. `/ivy-create-incident` and set the Request URL to your public Axon Ivy custom URL.
+- A usage hint such as `Low, Medium, High, Critical` could be use to pass param from the Slack to Axon Ivy Application.
+- Reinstall the app if Slack asks you to refresh permissions after saving the commands.
 
 ![Create the Slack slash command](images/setup-create-slack-slash-command.png)
-
-6. Point Slack to the correct public Axon Ivy URL.
-   6.1. The REST resource in the demo is implemented at `@Path("/incident")` with POST endpoints `/create` and `/summary`.
-   6.2. A typical public command URL therefore looks like `https://<your-ivy-app-base-url>/api/incident/create`.
-   6.3. If your Axon Ivy environment is published under an extra path segment such as `/designer`, keep that segment and append `/api/incident/create` or `/api/incident/summary`.
-
-7. Verify the integration.
-   7.1. Run `/ivy-create-incident Low` in Slack and confirm that Slack returns `Process CreateIncident has been started by user: ...`.
-   7.2. Open the approval task, choose a responsible role, and confirm or reject the incident.
-   7.3. Run `/ivy-summary-incident` and check that the channel receives the current severity counts.
 
 ## Components
 

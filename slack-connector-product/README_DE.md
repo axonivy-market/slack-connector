@@ -1,17 +1,16 @@
 # Slack Connector
 
-Der Slack Connector verbindet Axon Ivy mit Slack und ermöglicht dir, aus Prozessen heraus Nachrichten zu senden, Slash-Commands zu verarbeiten und Workflows direkt aus Slack auszulösen. Er stellt einen `CALLABLE_SUB` zum Versenden von Nachrichten, eine kleine Java-Hilfs-API (`MessageService`) und Beispiel-Workflows zur schnellen Evaluierung bereit.
+Der Slack Connector integriert Axon Ivy mit Slack und ermöglicht es Prozessen, Nachrichten zu senden, Slash-Commands zu verarbeiten und Workflows direkt aus Slack-Kanälen und von Slack-Benutzern auszulösen. Er stellt einen aufrufbaren Subprozess zum Senden von Nachrichten, eine kleine Java-Hilfs-API und Demo-Workflows bereit, damit du die Integration schnell evaluieren und erweitern kannst.
 
 [![CI Build](https://github.com/axonivy-market/slack-connector/actions/workflows/ci.yml/badge.svg)](https://github.com/axonivy-market/slack-connector/actions/workflows/ci.yml)
 
 ### Wichtigste Funktionen
 
-- Sende Nachrichten an Slack-Kanäle und Threads direkt aus Axon Ivy-Prozessen, um automatisierte Benachrichtigungen und Alerts zu realisieren.
-- Poste reichhaltige Block-/Attachment-Nachrichten, um interaktive Benachrichtigungen und strukturierte Updates darzustellen.
+- Sende Nachrichten an Slack-Kanäle und Threads direkt aus Axon Ivy-Prozessen und ermögliche so automatisierte Benachrichtigungen und Alerts.
 - Einfache Java-Hilfs-API (`MessageService`), um Nachrichten programmatisch aus Java-Code und Prozessskripten zu senden.
-- Verarbeite Slack-Slash-Commands, um interaktive Workflows (z. B. Incident-Erstellung) direkt aus Slack zu starten.
-- Demo-Implementierungen zum Erstellen von Incidents und Öffnen von Genehmigungsaufgaben, damit du schnell testen kannst.
-- Einfache Konfiguration über Produktvariablen und fertige Demo-Installer für eine schnelle Inbetriebnahme.
+- Verarbeite Slack-Slash-Commands, um interaktive Workflows wie die Incident-Erstellung direkt aus Slack zu starten.
+- Demo-Implementierungen zum Erstellen von Incidents und Öffnen von Freigabeaufgaben, damit du die Lösung schnell evaluieren kannst.
+- Einfache Konfiguration über Produktvariablen und sofort nutzbare Demo-Installer für ein schnelles Setup.
 
 ## Demo
 
@@ -73,50 +72,43 @@ Variables:
 ```
 
 1. Installiere die Connector-Artefakte in deiner Axon Ivy-Umgebung.
-   1.1. Importiere `slack-connector` für die Kernintegration.
-   1.2. Importiere zusätzlich `slack-connector-demo`, wenn du die Beispiel-Slash-Commands, den Dialog und den Task Listener nutzen willst.
+
+- Importiere `slack-connector` für die Kernintegration.
+- Importiere zusätzlich `slack-connector-demo`, wenn du die Beispiel-Slash-Commands, den Dialog und den Task Listener nutzen willst.
 
 2. Erstelle die Slack-App, die deinen Axon-Ivy-Bot repräsentiert.
-   2.1. Öffne https://api.slack.com/apps und klicke auf **Create New App**.
-   2.2. Wähle **From scratch**, vergebe einen Namen wie `Axon Ivy Bot` und wähle den Ziel-Workspace aus.
+
+- Öffne https://api.slack.com/apps und klicke auf **Create New App**.
+- Wähle **From scratch**, vergebe einen Namen wie `Axon Ivy Bot` und wähle den Ziel-Workspace aus.
 
 ![Neue Slack-App von Grund auf erstellen](images/setup-create-new-slack-app.png)
 
 3. Füge die Bot-Scopes hinzu, die der Connector benötigt.
-   3.1. Öffne **OAuth & Permissions** in deiner Slack-App.
-   3.2. Füge `chat:write` hinzu, damit der Bot Incident-Updates posten kann.
-   3.3. Füge `commands` hinzu, damit Slack die Slash-Commands ausführen kann.
-   3.4. Ergänze `chat:write.public`, wenn der Bot auch in öffentliche Kanäle posten soll, bevor er eingeladen wurde.
+
+- Öffne **OAuth & Permissions** in deiner Slack-App.
+- Füge `chat:write` hinzu, damit der Bot Incident-Updates posten kann.
+- Füge `commands` hinzu, damit Slack die Slash-Commands ausführen kann.
+- Ergänze `chat:write.public`, wenn der Bot auch in öffentliche Kanäle posten soll, bevor er eingeladen wurde.
 
 ![Erforderliche Slack-Bot-Token-Scopes](images/setup-add-bot-token-scope.png)
 
 4. Installiere die App im Workspace und kopiere das Bot-Token.
-   4.1. Öffne **Install App** und autorisiere die App für deinen Workspace.
-   4.2. Kopiere das **Bot User OAuth Token**, das nach der Installation angezeigt wird.
-   4.3. Speichere dieses Token in der Axon Ivy-Variable `com.axonivy.connector.slack.botToken`.
-   4.4. Halte den Wert aus der Versionsverwaltung heraus und ersetze lokale Test-Tokens, bevor du das Projekt teilst.
+
+- Öffne **Install App** und autorisiere die App für deinen Workspace.
+- Kopiere das **Bot User OAuth Token**, das nach der Installation angezeigt wird.
+- Speichere dieses Token in der Axon Ivy-Variable `com.axonivy.connector.slack.botToken`.
+- Halte den Wert aus der Versionsverwaltung heraus und ersetze lokale Test-Tokens, bevor du das Projekt teilst.
 
 ![Slack-App installieren und Bot-Token kopieren](images/setup-install-slack-app.png)
 
 5. Erstelle die Slash-Commands, die das Demo verwendet.
-   5.1. Öffne **Features** -> **Slash Commands** und klicke auf **Create New Command**.
-   5.2. Erstelle `/ivy-create-incident` und setze die Request URL auf deine öffentliche Axon Ivy-Anwendungsbasis-URL plus `/api/incident/create`.
-   5.3. Verwende eine kurze Beschreibung wie `run create Incident process with severity`.
-   5.4. Verwende einen Usage Hint wie `Low, Medium, High, Critical`.
-   5.5. Erstelle `/ivy-summary-incident` als zweiten Command und verweise ihn auf `/api/incident/summary` unter derselben öffentlichen Basis-URL.
-   5.6. Installiere die App erneut, wenn Slack nach dem Speichern der Commands eine Aktualisierung der Berechtigungen verlangt.
+
+- Öffne **Features** -> **Slash Commands** und klicke auf **Create New Command**.
+- Erstelle den Slash-Command, zum Beispiel `/ivy-create-incident`, und setze die Request URL auf deine öffentliche benutzerdefinierte Axon Ivy-URL.
+- Ein Usage Hint wie `Low, Medium, High, Critical` kann verwendet werden, um Parameter von Slack an die Axon Ivy-Anwendung zu übergeben.
+- Installiere die App erneut, wenn Slack nach dem Speichern der Commands eine Aktualisierung der Berechtigungen verlangt.
 
 ![Slack-Slash-Command erstellen](images/setup-create-slack-slash-command.png)
-
-6. Richte Slack auf die korrekte öffentliche Axon Ivy-URL aus.
-   6.1. Die REST-Ressource im Demo ist mit `@Path("/incident")` implementiert und stellt die POST-Endpunkte `/create` und `/summary` bereit.
-   6.2. Eine typische öffentliche Command-URL sieht daher wie `https://<your-ivy-app-base-url>/api/incident/create` aus.
-   6.3. Wenn deine Axon Ivy-Umgebung unter einem zusätzlichen Pfadsegment wie `/designer` veröffentlicht ist, behältst du dieses Segment bei und hängst `/api/incident/create` oder `/api/incident/summary` an.
-
-7. Prüfe die Integration.
-   7.1. Führe `/ivy-create-incident Low` in Slack aus und prüfe, dass Slack `Process CreateIncident has been started by user: ...` zurückmeldet.
-   7.2. Öffne die Freigabeaufgabe, wähle eine verantwortliche Rolle und bestätige oder lehne den Incident ab.
-   7.3. Führe `/ivy-summary-incident` aus und kontrolliere, dass der Kanal die aktuellen Severity-Zahlen erhält.
 
 ## Components
 
