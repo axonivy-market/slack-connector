@@ -2,8 +2,6 @@
 
 The Slack Connector integrates Axon Ivy with Slack, enabling processes to post messages, handle slash-commands, and trigger workflows directly from Slack channels and users. It provides a callable subprocess for sending messages, a small Java helper API, and demo workflows to help you evaluate and extend the integration.
 
-[![CI Build](https://github.com/axonivy-market/slack-connector/actions/workflows/ci.yml/badge.svg)](https://github.com/axonivy-market/slack-connector/actions/workflows/ci.yml)
-
 ### Key features
 
 - Send messages to Slack channels and threads directly from Axon Ivy processes, enabling automated notifications and alerts.
@@ -18,7 +16,7 @@ The demo module shows how Slack commands, Axon Ivy cases, and Slack bot response
 
 ### Demo workflows
 
-#### slack-connector-demo (slack-connector-demo)
+#### slack-connector-demo
 
 ##### Create incident from Slack
 
@@ -50,25 +48,10 @@ The demo module shows how Slack commands, Axon Ivy cases, and Slack bot response
 
 ## Setup
 
-- **Roles:** Everybody (configured in `config/roles.xml`)
-- **OpenAPI:** Slack Web API spec at https://github.com/slackapi/slack-api-specs/blob/master/web-api/slack_web_openapi_v2.json with namespace `com.slack.api.client`
-
 ### Variables
 
 ```yaml
-# yaml-language-server: $schema=https://json-schema.axonivy.com/app/12.0.0/variables.json
-Variables:
-  com:
-    axonivy:
-      connector:
-        slack:
-          # the base url for Slack api
-          baseUrl: https://slack.com/api
-          notification:
-            # enables the Slack notification for new tasks
-            enabled: "true"
-          # the token from Slack bot
-          botToken: ""
+@variables.yaml@
 ```
 
 1. Install the connector artifacts into your Axon Ivy environment.
@@ -112,13 +95,46 @@ Variables:
 
 ## Components
 
-### Connector processes
+### Callable Subprocesses
 
 #### SendBotMessage.p.json
 
-- **sendBotMessage(String message, String channel, String botToken) -> out: com.axonivy.connector.slack.SendBotMessageData**
+- **sendBotMessage(String message, String channel, String botToken)**
   - Input:
-    - `message` (String)
+    - `message` (String) — message text to post
+    - `channel` (String) — channel ID or name
+    - `botToken` (String) — optional Bot OAuth token to use for the call
+
+### Dialog Components
+
+There is no available Dialog component.
+
+### Web Services
+
+- **Slack API (Slack Web API)** — Spec URL: `https://github.com/slackapi/slack-api-specs/blob/master/web-api/slack_web_openapi_v2.json` (Namespace: `com.slack.api.client`)
+
+### Maven Artifacts
+
+1. com.axonivy.connector.slack.connector:slack-connector
+
+```xml
+<dependency>
+  <groupId>com.axonivy.connector.slack.connector</groupId>
+  <artifactId>slack-connector</artifactId>
+  <type>iar</type>
+</dependency>
+```
+
+2. com.axonivy.connector.slack.connector:slack-connector-demo (optional)
+
+```xml
+<dependency>
+  <groupId>com.axonivy.connector.slack.connector</groupId>
+  <artifactId>slack-connector-demo</artifactId>
+  <type>iar</type>
+</dependency>
+```
+
     - `channel` (String)
     - `botToken` (String)
 
