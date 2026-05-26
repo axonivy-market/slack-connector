@@ -15,7 +15,7 @@ public class SlackNotificationStart extends AbstractProcessStartEventBean {
 
 	@Override
 	public void poll() {
-		getEventBeanRuntime().poll().disable(); // no poll; we only use start/stop hooks
+		getEventBeanRuntime().poll().disable();
 	}
 
 	@Override

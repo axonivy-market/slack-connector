@@ -2,6 +2,8 @@ package com.axonivy.connector.slack.enums;
 
 import java.util.Arrays;
 
+import org.apache.commons.lang3.StringUtils;
+
 public enum SeverityLevel {
 	LOW("Low"), MEDIUM("Medium"), HIGH("High"), CRITICAL("Critical"), UNKNOWN("Unknown");
 
@@ -16,12 +18,10 @@ public enum SeverityLevel {
 	}
 
 	public static SeverityLevel fromValue(String value) {
-		if (value == null || value.isBlank()) {
+		if (StringUtils.isBlank(value)) {
 			return UNKNOWN;
 		}
-		
-		return Arrays.stream(values())
-				.filter(level -> level.value.equalsIgnoreCase(value) || level.name().equalsIgnoreCase(value))
-				.findFirst().orElse(UNKNOWN);
+
+		return Arrays.stream(values()).filter(level -> level.value.equalsIgnoreCase(value)).findFirst().orElse(UNKNOWN);
 	}
 }

@@ -1,77 +1,36 @@
-.incident-wrapper {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 40px 20px;
+.reject-btn, .confirm-btn {
+	height: 44px;
+	min-width: 120px;
 }
 
 .incident-card {
-	width: 100%;
-	max-width: 580px;
-	background: #f8f8f8;
-	border: 1px solid #dcdcdc;
-	border-radius: 12px;
+	max-width: 560px !important;
+	background: #f8f8f8 !important;
 	padding: 32px;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .incident-title {
 	font-size: 20px;
 	font-weight: 700;
 	color: #333;
-	margin: 0 0 24px 0;
 }
 
 .incident-description {
 	font-size: 15px;
 	line-height: 1.5;
 	color: #555;
-	margin-bottom: 28px;
 }
 
-.field-section {
-	margin-bottom: 32px;
-}
-
-.field-label {
-	display: block;
+.incident-field-label {
 	font-size: 14px;
 	font-weight: 600;
-	margin-bottom: 10px;
-	color: #444;
 }
 
-.full-width-select {
-	width: 100%;
-}
-
-.button-row {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 28px;
-}
-
-.action-buttons {
-	display: flex;
-	gap: 12px;
-}
-
-.cancel-btn {
+.incident-cancel {
 	font-size: 15px;
-	text-decoration: none;
-	color: #2b6cb0;
 }
 
-.reject-btn,
-.confirm-btn {
-	height: 44px;
+.incident-action-btn {
 	min-width: 120px;
-}
-
-.footer-text {
-	border-top: 1px solid #ddd;
-	padding-top: 18px;
-	font-size: 14px;
-	color: #666;
+	height: 44px;
 }

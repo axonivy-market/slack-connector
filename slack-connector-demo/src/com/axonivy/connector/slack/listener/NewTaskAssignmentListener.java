@@ -44,15 +44,13 @@ public class NewTaskAssignmentListener implements IWorkflowListener {
 				switch (event.getEventKind()) {
 				case EVENT_CHANGE_TASK_ACTIVATOR:
 				case EVENT_CREATE_TASK_BY_JOINED_TASKS:
-				case EVENT_CREATE_FIRST_TASK_OF_CASE: // task was created by trigger
-														// task has state suspended
+				case EVENT_CREATE_FIRST_TASK_OF_CASE:
 				case EVENT_REDO_TASK:
 				case EVENT_TASK_DELAY_EXPIRED:
 				case EVENT_CHANGE_TASK_ACTIVATOR_BY_TIMEOUT:
 					send = true;
 					break;
 				default:
-					// do nothing
 					break;
 				}
 				if (send) {

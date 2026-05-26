@@ -10,4 +10,5 @@ Variables:
             # enables the Slack notification for new tasks
             enabled: "true"
           # the token from Slack bot
-          botToken: ""
+          #[password]
+          botToken: ${decrypt:}
