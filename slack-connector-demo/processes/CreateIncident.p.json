@@ -77,17 +77,6 @@
             { "id" : "S10-f11", "to" : "S10-f4" }
           ]
         }, {
-          "id" : "S10-g2",
-          "type" : "EmbeddedStart",
-          "name" : "from Slack",
-          "visual" : {
-            "at" : { "x" : 64, "y" : 328 },
-            "labelOffset" : { "x" : 11, "y" : 35 }
-          },
-          "connect" : [
-            { "id" : "S10-f9", "to" : "S10-f5", "via" : [ { "x" : 200, "y" : 328 } ] }
-          ]
-        }, {
           "id" : "S10-f5",
           "type" : "Alternative",
           "visual" : {

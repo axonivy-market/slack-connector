@@ -135,9 +135,6 @@ There is no available Dialog component.
 </dependency>
 ```
 
-    - `channel` (String)
-    - `botToken` (String)
-
 ### Form Components
 
 #### IncidentDetailDialog — Review and resolve incident requests from Slack
