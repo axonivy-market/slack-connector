@@ -25,7 +25,7 @@
           },
           "parentConnector" : "f0",
           "connect" : [
-            { "id" : "S10-f0", "to" : "S10-f5" }
+            { "id" : "S10-f0", "to" : "S10-f8" }
           ]
         }, {
           "id" : "S10-g1",
@@ -71,20 +71,10 @@
             }
           },
           "visual" : {
-            "at" : { "x" : 528, "y" : 256 }
+            "at" : { "x" : 472, "y" : 256 }
           },
           "connect" : [
             { "id" : "S10-f11", "to" : "S10-f4" }
-          ]
-        }, {
-          "id" : "S10-f5",
-          "type" : "Alternative",
-          "visual" : {
-            "at" : { "x" : 200, "y" : 256 },
-            "labelOffset" : { "x" : 14, "y" : 34 }
-          },
-          "connect" : [
-            { "id" : "S10-f6", "to" : "S10-f8", "color" : "default" }
           ]
         }, {
           "id" : "S10-f8",
@@ -102,7 +92,7 @@
             }
           },
           "visual" : {
-            "at" : { "x" : 352, "y" : 256 }
+            "at" : { "x" : 256, "y" : 256 }
           },
           "connect" : [
             { "id" : "S10-f3", "to" : "S10-f2" }

@@ -1,8 +1,7 @@
 package com.axonivy.connector.slack.dto;
 
-import javax.ws.rs.FormParam;
-
 import com.axonivy.connector.slack.constant.SlackSlashCommandConstant;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SlashCommandData {
 	public SlashCommandData() {
@@ -24,30 +23,32 @@ public class SlashCommandData {
 		this.teamDomain = teamDomain;
 	}
 
-	@FormParam(SlackSlashCommandConstant.COMMAND)
+	@JsonProperty(SlackSlashCommandConstant.COMMAND)
 	private String command;
-	@FormParam(SlackSlashCommandConstant.TEXT)
+	@JsonProperty(SlackSlashCommandConstant.TEXT)
 	private String text;
-	@FormParam(SlackSlashCommandConstant.CHANNEL_ID)
+	@JsonProperty(SlackSlashCommandConstant.CHANNEL_ID)
 	private String channelId;
-	@FormParam(SlackSlashCommandConstant.CHANNEL_NAME)
+	@JsonProperty(SlackSlashCommandConstant.CHANNEL_NAME)
 	private String channelName;
-	@FormParam(SlackSlashCommandConstant.USER_ID)
+	@JsonProperty(SlackSlashCommandConstant.USER_ID)
 	private String userId;
-	@FormParam(SlackSlashCommandConstant.USER_NAME)
+	@JsonProperty(SlackSlashCommandConstant.USER_NAME)
 	private String userName;
-	@FormParam(SlackSlashCommandConstant.RESPONSE_URL)
+	@JsonProperty(SlackSlashCommandConstant.RESPONSE_URL)
 	private String responseUrl;
-	@FormParam(SlackSlashCommandConstant.TRIGGER_ID)
+	@JsonProperty(SlackSlashCommandConstant.TRIGGER_ID)
 	private String triggerId;
-	@FormParam(SlackSlashCommandConstant.TEAM_ID)
+	@JsonProperty(SlackSlashCommandConstant.TEAM_ID)
 	private String teamId;
-	@FormParam(SlackSlashCommandConstant.TEAM_DOMAIN)
+	@JsonProperty(SlackSlashCommandConstant.TEAM_DOMAIN)
 	private String teamDomain;
-	@FormParam(SlackSlashCommandConstant.API_APP_ID)
+	@JsonProperty(SlackSlashCommandConstant.API_APP_ID)
 	private String apiAppId;
-	@FormParam(SlackSlashCommandConstant.TOKEN)
+	@JsonProperty(SlackSlashCommandConstant.TOKEN)
 	private String token;
+	@JsonProperty(SlackSlashCommandConstant.IS_ENTERPRISE_INSTALL)
+	private String isEnterpriseInstall;
 
 	public String getCommand() {
 		return command;
@@ -127,6 +128,14 @@ public class SlashCommandData {
 
 	public void setTeamDomain(String teamDomain) {
 		this.teamDomain = teamDomain;
+	}
+
+	public String getIsEnterpriseInstall() {
+		return isEnterpriseInstall;
+	}
+
+	public void setIsEnterpriseInstall(String isEnterpriseInstall) {
+		this.isEnterpriseInstall = isEnterpriseInstall;
 	}
 
 }

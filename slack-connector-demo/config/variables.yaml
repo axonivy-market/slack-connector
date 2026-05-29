@@ -5,10 +5,12 @@ Variables:
       connector:
         slack:
           # the base url for Slack api
-          baseUrl: "https://slack.com/api"
+          baseUrl: https://slack.com/api
           notification:
             # enables the Slack notification for new tasks
             enabled: "true"
           # the token from Slack bot
           #[password]
           botToken: ${decrypt:}
+          #[password]
+          signingSecret: ${decrypt:TeKoxBTYqUua6JGsg/5sZjaoALj6hTG3buH6AhyoN1L0Bh/lhKfLkuZY4tmRzLXe}

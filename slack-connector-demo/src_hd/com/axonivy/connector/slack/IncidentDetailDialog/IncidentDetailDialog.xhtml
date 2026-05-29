@@ -12,7 +12,7 @@
 		<ui:define name="content">
 			<h:outputStylesheet name="layouts/styles/incidentDetail.css" />
 
-			<div class="flex justify-content-center align-items-center p-4">
+			<div class="task-container flex justify-content-center align-items-center p-4">
 				<h:form id="form" styleClass="w-full flex justify-content-center">
 					<div
 						class="incident-card w-full surface-card border-1 border-300 border-round-xl shadow-1">
@@ -51,7 +51,7 @@
 						</div>
 
 						<div
-							class="flex justify-content-between align-items-center mb-4 gap-3 flex-wrap">
+							class="flex justify-content-between align-items-center gap-3 flex-wrap">
 							<p:commandLink id="cancel"
 								actionListener="#{ivyWorkflowView.cancel()}" process="@this"
 								value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/slack/IncidentDetailDialog/Cancel')}"

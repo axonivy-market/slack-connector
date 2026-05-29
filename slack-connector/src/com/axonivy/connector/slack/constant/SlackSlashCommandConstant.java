@@ -16,5 +16,6 @@ public class SlackSlashCommandConstant {
 	public static final String TEAM_DOMAIN = "team_domain";
 	public static final String API_APP_ID = "api_app_id";
 	public static final String TOKEN = "token";
+	public static final String IS_ENTERPRISE_INSTALL = "is_enterprise_install";
 	
 }
