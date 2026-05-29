@@ -1,5 +1,5 @@
 .task-container{
-	min-height: 1000px;
+	min-height: calc(100vh - 300px);
 }
 
 .incident-card {
@@ -29,6 +29,7 @@
 
 .incident-cancel {
 	font-size: 15px;
+	line-height: 1;
 }
 
 .incident-action-btn {
