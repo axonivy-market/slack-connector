@@ -18,8 +18,6 @@ Das Demo‑Modul zeigt, wie Slash‑Commands, Axon Ivy‑Fälle und Slack‑Bot�
 
 ### Demo workflows
 
-#### slack-connector-demo (slack-connector-demo)
-
 ##### Incident aus Slack erstellen
 
 1. Öffne einen Slack‑Kanal, in dem deine App installiert ist, und führe `/ivy-create-incident` mit einer Severity wie `Low`, `Medium`, `High` oder `Critical` aus.
@@ -49,9 +47,6 @@ Das Demo‑Modul zeigt, wie Slash‑Commands, Axon Ivy‑Fälle und Slack‑Bot�
 3. Prüfe die Slack‑Benachrichtigungen, die gesendet werden, sobald neue Freigabeaufgaben verfügbar sind.
 
 ## Setup
-
-- **Roles:** Everybody (konfiguriert in `config/roles.xml`)
-- **OpenAPI:** Slack Web API Spec: `https://github.com/slackapi/slack-api-specs/blob/master/web-api/slack_web_openapi_v2.json` (Namespace: `com.slack.api.client`)
 
 ### Variables
 

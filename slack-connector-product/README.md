@@ -16,8 +16,6 @@ The demo module shows how Slack commands, Axon Ivy cases, and Slack bot response
 
 ### Demo workflows
 
-#### slack-connector-demo
-
 ##### Create incident from Slack
 
 1. Open a Slack channel where your app is installed and run `/ivy-create-incident` with a severity such as `Low`, `Medium`, `High`, or `Critical`.
