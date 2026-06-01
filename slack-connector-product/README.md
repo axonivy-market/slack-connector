@@ -2,8 +2,6 @@
 
 The Slack Connector integrates Axon Ivy with Slack, enabling processes to post messages, handle slash-commands, and trigger workflows directly from Slack channels and users. It provides a callable subprocess for sending messages, a small Java helper API, and demo workflows to help you evaluate and extend the integration.
 
-[![CI Build](https://github.com/axonivy-market/slack-connector/actions/workflows/ci.yml/badge.svg)](https://github.com/axonivy-market/slack-connector/actions/workflows/ci.yml)
-
 ### Key features
 
 - Send messages to Slack channels and threads directly from Axon Ivy processes, enabling automated notifications and alerts.
@@ -18,7 +16,7 @@ The demo module shows how Slack commands, Axon Ivy cases, and Slack bot response
 
 ### Demo workflows
 
-#### slack-connector-demo (slack-connector-demo)
+#### slack-connector-demo
 
 ##### Create incident from Slack
 
@@ -50,9 +48,6 @@ The demo module shows how Slack commands, Axon Ivy cases, and Slack bot response
 
 ## Setup
 
-- **Roles:** Everybody (configured in `config/roles.xml`)
-- **OpenAPI:** Slack Web API spec at https://github.com/slackapi/slack-api-specs/blob/master/web-api/slack_web_openapi_v2.json with namespace `com.slack.api.client`
-
 ### Variables
 
 ```yaml
@@ -68,7 +63,10 @@ Variables:
             # enables the Slack notification for new tasks
             enabled: "true"
           # the token from Slack bot
-          botToken: ""
+          #[password]
+          botToken: ${decrypt:}
+          #[password]
+          signingSecret: ${decrypt:}
 ```
 
 1. Install the connector artifacts into your Axon Ivy environment.
@@ -112,49 +110,42 @@ Variables:
 
 ## Components
 
-### Connector processes
+### Callable Subprocesses
 
 #### SendBotMessage.p.json
 
-- **sendBotMessage(String message, String channel, String botToken) -> out: com.axonivy.connector.slack.SendBotMessageData**
+- **sendBotMessage(String message, String channel, String botToken)**
   - Input:
-    - `message` (String)
-    - `channel` (String)
-    - `botToken` (String)
+    - `message` (String) — message text to post
+    - `channel` (String) — channel ID or name
+    - `botToken` (String) — optional Bot OAuth token to use for the call
 
-### Form Components
+### Dialog Components
 
-#### IncidentDetailDialog — Review and resolve incident requests from Slack
+There is no available Dialog component.
 
-- **Namespace:** `com.axonivy.connector.slack.IncidentDetailDialog`
-- **Component type:** HTML_DIALOG
-- **Fields:**
-  - `channel` — Slack channel identifier used for the response message
-  - `severity` — Incident severity passed in from the slash command
-  - `responsible` — Selected role that is returned to the workflow on confirm or reject
-- **Where used:** `CreateIncident` demo workflow
-- **Purpose:** Presents the incident approval form, lets the user choose the responsible role, and sends the decision back to Slack.
+### Web Services
 
-### Maven artifacts
+- **Slack API (Slack Web API)** — Spec URL: `https://github.com/slackapi/slack-api-specs/blob/master/web-api/slack_web_openapi_v2.json` (Namespace: `com.slack.api.client`)
 
-1. com.axonivy.connector.slack.connector:slack-connector (@version@)
+### Maven Artifacts
+
+1. com.axonivy.connector.slack.connector:slack-connector
 
 ```xml
 <dependency>
   <groupId>com.axonivy.connector.slack.connector</groupId>
   <artifactId>slack-connector</artifactId>
-  <version>@version@</version>
   <type>iar</type>
 </dependency>
 ```
 
-2. com.axonivy.connector.slack.connector:slack-connector-demo (@version@) _(optional)_
+2. com.axonivy.connector.slack.connector:slack-connector-demo (optional)
 
 ```xml
 <dependency>
   <groupId>com.axonivy.connector.slack.connector</groupId>
   <artifactId>slack-connector-demo</artifactId>
-  <version>@version@</version>
   <type>iar</type>
 </dependency>
 ```
