@@ -50,23 +50,8 @@ The demo module shows how Slack commands, Axon Ivy cases, and Slack bot response
 
 ### Variables
 
-```yaml
-# yaml-language-server: $schema=https://json-schema.axonivy.com/app/12.0.0/variables.json
-Variables:
-  com:
-    axonivy:
-      connector:
-        slack:
-          # the base url for Slack api
-          baseUrl: https://slack.com/api
-          notification:
-            # enables the Slack notification for new tasks
-            enabled: "true"
-          # the token from Slack bot
-          #[password]
-          botToken: ${decrypt:}
-          #[password]
-          signingSecret: ${decrypt:}
+```
+@variables.yaml@
 ```
 
 1. Install the connector artifacts into your Axon Ivy environment.
