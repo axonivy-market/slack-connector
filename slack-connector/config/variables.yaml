@@ -13,4 +13,4 @@ Variables:
           #[password]
           botToken: ${decrypt:}
           #[password]
-          signingSecret: ${decrypt:TeKoxBTYqUua6JGsg/5sZjaoALj6hTG3buH6AhyoN1L0Bh/lhKfLkuZY4tmRzLXe}
+          signingSecret: ${decrypt:}
