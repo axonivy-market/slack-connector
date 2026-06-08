@@ -1,0 +1,99 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "19E1A69D291B2107",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.connector.slack.SendBotMessageData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "sendBotMessage(String,String,String)",
+      "config" : {
+        "signature" : "sendBotMessage",
+        "input" : {
+          "params" : [
+            { "name" : "message", "type" : "String", "desc" : "" },
+            { "name" : "channel", "type" : "String", "desc" : "" },
+            { "name" : "botToken", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.botToken" : "param.botToken",
+            "out.channelId" : "param.channel",
+            "out.message" : "param.message"
+          }
+        }
+      },
+      "tags" : [
+        "connector"
+      ],
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 504, "y" : 64 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "RestClientCall",
+      "name" : "Slack API (Slack Web API)",
+      "config" : {
+        "method" : "POST",
+        "target" : {
+          "clientId" : "58f9f2ee-e165-4d28-813c-4fe12c372115",
+          "path" : "/chat.postMessage",
+          "headers" : {
+            "Accept" : "application/json",
+            "Authorization" : "\"Bearer \" + in.botToken"
+          }
+        },
+        "body" : {
+          "type" : "FORM",
+          "mediaType" : "application/x-www-form-urlencoded",
+          "form" : {
+            "as_user" : [ "" ],
+            "attachments" : [ "" ],
+            "blocks" : [ "" ],
+            "channel" : [ "in.channelId" ],
+            "icon_emoji" : [ "" ],
+            "icon_url" : [ "" ],
+            "link_names" : [ "" ],
+            "mrkdwn" : [ "" ],
+            "parse" : [ "" ],
+            "reply_broadcast" : [ "" ],
+            "text" : [ "in.message" ],
+            "thread_ts" : [ "" ],
+            "unfurl_links" : [ "" ],
+            "unfurl_media" : [ "" ],
+            "username" : [ "" ]
+          },
+          "entity" : {
+            "type" : "com.slack.api.client.ChatPostMessageBody"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 312, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1", "color" : "default" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "ErrorStartEvent",
+      "visual" : {
+        "at" : { "x" : 360, "y" : 96 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f1", "via" : [ { "x" : 504, "y" : 96 } ] }
+      ]
+    } ]
+}

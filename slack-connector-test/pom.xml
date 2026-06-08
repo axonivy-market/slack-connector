@@ -2,14 +2,14 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.axonivy.connector.slack.connector</groupId>
+  <groupId>com.axonivy.connector.slack</groupId>
   <artifactId>slack-connector-test</artifactId>
   <version>12.0.14-SNAPSHOT</version>
   <packaging>iar-integration-test</packaging>
   <properties>
-    <project.build.plugin.version>12.0.14</project.build.plugin.version>
+    <project.build.plugin.version>12.0.13</project.build.plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <tester.version>12.0.14</tester.version>
+    <tester.version>12.0.3</tester.version>
   </properties>
   <pluginRepositories>
     <!-- Snapshot releases are available via sonatype.org -->
@@ -32,7 +32,7 @@
   </repositories>
   <dependencies>
     <dependency>
-      <groupId>com.axonivy.connector.slack.connector</groupId>
+      <groupId>com.axonivy.connector.slack</groupId>
       <artifactId>slack-connector</artifactId>
       <version>${project.version}</version>
       <type>iar</type>

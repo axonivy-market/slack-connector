@@ -1,0 +1,130 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "19E169BD7CD31E4C",
+  "config" : {
+    "data" : "com.axonivy.connector.slack.demo.CreateIncidentData"
+  },
+  "elements" : [ {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 560, "y" : 64 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "S10",
+      "type" : "UserBpmnElement",
+      "name" : "Incident Details",
+      "elements" : [ {
+          "id" : "S10-g0",
+          "type" : "EmbeddedStart",
+          "name" : "manual",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 256 },
+            "labelOffset" : { "x" : 11, "y" : 35 }
+          },
+          "parentConnector" : "f0",
+          "connect" : [
+            { "id" : "S10-f0", "to" : "S10-f8" }
+          ]
+        }, {
+          "id" : "S10-g1",
+          "type" : "EmbeddedEnd",
+          "visual" : {
+            "at" : { "x" : 840, "y" : 256 },
+            "labelOffset" : { "x" : 3, "y" : 23 }
+          },
+          "parentConnector" : "f5"
+        }, {
+          "id" : "S10-f4",
+          "type" : "DialogCall",
+          "name" : "OpenApproval Task",
+          "config" : {
+            "dialog" : "com.axonivy.connector.slack.IncidentDetailDialog:start(String,String)",
+            "call" : {
+              "map" : {
+                "param.severity" : "in.severity",
+                "param.channel" : "in.slashCommandData.channelId"
+              }
+            },
+            "output" : {
+              "map" : {
+                "out" : "in",
+                "out.responsible" : "out.responsible"
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 696, "y" : 256 },
+            "size" : { "width" : 128, "height" : 54 }
+          },
+          "connect" : [
+            { "id" : "S10-f1", "to" : "S10-g1" }
+          ]
+        }, {
+          "id" : "S10-f2",
+          "type" : "TaskSwitchEvent",
+          "name" : "Open Approval Task",
+          "config" : {
+            "task" : {
+              "name" : "Open Approval Task"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 472, "y" : 256 }
+          },
+          "connect" : [
+            { "id" : "S10-f11", "to" : "S10-f4" }
+          ]
+        }, {
+          "id" : "S10-f8",
+          "type" : "Script",
+          "name" : "extract severity",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import com.axonivy.connector.slack.enums.CustomField;",
+                "import com.axonivy.connector.slack.enums.SeverityLevel;",
+                "in.severity = SeverityLevel.fromValue(in.slashCommandData.text).getValue();",
+                "ivy.case.customFields().stringField(CustomField.CHANNEL.getFieldName()).set(in.slashCommandData.channelId);",
+                "ivy.case.customFields().stringField(CustomField.SEVERITY.getFieldName()).set(in.severity);"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 256, "y" : 256 }
+          },
+          "connect" : [
+            { "id" : "S10-f3", "to" : "S10-f2" }
+          ]
+        } ],
+      "visual" : {
+        "at" : { "x" : 328, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f5", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "SignalStartEvent",
+      "name" : "CreateIncident",
+      "config" : {
+        "signalCode" : "CreateIncident",
+        "output" : {
+          "map" : {
+            "out.slashCommandData" : "signal.getSignalData() as com.axonivy.connector.slack.dto.SlashCommandData"
+          }
+        }
+      },
+      "tags" : [
+        "demo"
+      ],
+      "visual" : {
+        "at" : { "x" : 112, "y" : 64 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      },
+      "connect" : [
+        { "id" : "f0", "to" : "S10" }
+      ]
+    } ]
+}

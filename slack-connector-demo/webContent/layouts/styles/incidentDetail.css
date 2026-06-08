@@ -1,0 +1,43 @@
+.task-container{
+	min-height: calc(100vh - 300px);
+}
+
+.incident-card {
+	max-width: 560px !important;
+	background: #f8f8f8 !important;
+	padding: 32px;
+	box-shadow: none !important;
+	border-color: #ebebeb !important;
+}
+
+.incident-title {
+	font-size: 20px;
+	font-weight: 700;
+	color: #333;
+}
+
+.incident-description {
+	font-size: 15px;
+	line-height: 1.5;
+	color: #555;
+}
+
+.incident-field-label {
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.incident-cancel {
+	font-size: 15px;
+	line-height: 1;
+}
+
+.incident-action-btn {
+	min-width: 120px;
+	height: 44px;
+}
+
+.reject-btn, .confirm-btn {
+	height: 44px;
+	min-width: 120px;
+}

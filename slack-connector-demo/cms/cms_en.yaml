@@ -1,0 +1,18 @@
+Dialogs:
+  com:
+    axonivy:
+      connector:
+        slack:
+          IncidentDetailDialog:
+            Administrator: Administrator
+            Cancel: Cancel
+            Confirm: Confirm
+            Consultant: Consultant
+            Description: This is a demo for the Slack connector.
+            Developer: Developer
+            IncidentSeverity: Incident Severity
+            Manager: Manager
+            PleaseSelect: Please select your role and then approve or reject this incident.
+            SelectOne: Select responsible
+            SelectTitle: Please select a module
+            Title: Incident Request
