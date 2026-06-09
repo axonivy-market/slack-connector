@@ -113,21 +113,21 @@ There is no available Dialog component.
 
 ### Maven Artifacts
 
-1. com.axonivy.connector.slack.connector:slack-connector
+1. com.axonivy.connector.slack:slack-connector
 
 ```xml
 <dependency>
-  <groupId>com.axonivy.connector.slack.connector</groupId>
+  <groupId>com.axonivy.connector.slack</groupId>
   <artifactId>slack-connector</artifactId>
   <type>iar</type>
 </dependency>
 ```
 
-2. com.axonivy.connector.slack.connector:slack-connector-demo (optional)
+2. com.axonivy.connector.slack:slack-connector-demo (optional)
 
 ```xml
 <dependency>
-  <groupId>com.axonivy.connector.slack.connector</groupId>
+  <groupId>com.axonivy.connector.slack</groupId>
   <artifactId>slack-connector-demo</artifactId>
   <type>iar</type>
 </dependency>
