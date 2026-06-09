@@ -6,7 +6,7 @@
       "data": {
         "projects": [
           {
-            "groupId": "com.axonivy.connector.slack.connector",
+            "groupId": "com.axonivy.connector.slack",
             "artifactId": "slack-connector-demo",
             "version": "${version}",
             "type": "iar"
@@ -28,7 +28,7 @@
       "data": {
         "dependencies": [
           {
-            "groupId": "com.axonivy.connector.slack.connector",
+            "groupId": "com.axonivy.connector.slack",
             "artifactId": "slack-connector",
             "version": "${version}",
             "type": "iar"
@@ -44,13 +44,13 @@
           }
         ]
       }
-    }, 
+    },
     {
       "id": "maven-dropins",
       "data": {
         "dependencies": [
           {
-            "groupId": "com.axonivy.connector.slack.connector",
+            "groupId": "com.axonivy.connector.slack",
             "artifactId": "slack-connector",
             "version": "${version}"
           }
