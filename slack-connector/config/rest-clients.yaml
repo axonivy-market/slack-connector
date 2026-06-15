@@ -1,12 +1,13 @@
-# yaml-language-server: $schema=https://json-schema.axonivy.com/app/12.0.0/rest-clients.json
+# yaml-language-server: $schema=https://json-schema.axonivy.com/14.0-dev/config/rest-clients-1.json
 RestClients:
   #One way to interact with the Slack platform is its HTTP RPC-based Web API, a collection of methods requiring OAuth 2.0-based user, bot, or workspace tokens blessed with related OAuth scopes.
-  Slack API (Slack Web API):
-    UUID: 58f9f2ee-e165-4d28-813c-4fe12c372115
+  Slack-API-Slack-Web-API:
+    Name: Slack API (Slack Web API)
     Url: ${ivy.var.com.axonivy.connector.slack.baseUrl}
     Features:
-    - ch.ivyteam.ivy.rest.client.mapper.JsonFeature
+      - ch.ivyteam.ivy.rest.client.mapper.JsonFeature
     OpenAPI:
       SpecUrl: https://github.com/slackapi/slack-api-specs/blob/master/web-api/slack_web_openapi_v2.json
       Namespace: com.slack.api.client
       ResolveFully: true
+    LegacyUUID: 58f9f2ee-e165-4d28-813c-4fe12c372115
