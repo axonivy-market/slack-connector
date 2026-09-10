@@ -25,7 +25,7 @@ import java.util.Map;
  * ObjsComment
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2026-05-19T10:50:20.722915200+07:00[Asia/Bangkok]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2026-05-19T10:50:20.722915200+07:00[Asia/Bangkok]")
 
 public class ObjsComment {
   @JsonProperty("comment")

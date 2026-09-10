@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://json-schema.axonivy.com/14.0-dev/config/rest-clients-1.json
+# yaml-language-server: $schema=https://json-schema.axonivy.com/14.0/config/rest-clients.json
 RestClients:
   #One way to interact with the Slack platform is its HTTP RPC-based Web API, a collection of methods requiring OAuth 2.0-based user, bot, or workspace tokens blessed with related OAuth scopes.
   Slack-API-Slack-Web-API:

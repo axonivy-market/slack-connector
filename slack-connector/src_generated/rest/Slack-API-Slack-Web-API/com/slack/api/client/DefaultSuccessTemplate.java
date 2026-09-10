@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * This method either only returns a brief _OK_ response or a verbose schema is not available for this method.
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2026-05-19T10:50:20.722915200+07:00[Asia/Bangkok]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2026-05-19T10:50:20.722915200+07:00[Asia/Bangkok]")
 
 public class DefaultSuccessTemplate extends HashMap<String, Object> {
   @JsonProperty("ok")

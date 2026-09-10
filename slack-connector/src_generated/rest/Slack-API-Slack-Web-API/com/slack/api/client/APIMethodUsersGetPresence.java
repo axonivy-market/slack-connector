@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * Generated from users.getPresence with shasum e7251aec575d8863f9e0eb38663ae9dc26655f65
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2026-05-19T10:50:20.722915200+07:00[Asia/Bangkok]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2026-05-19T10:50:20.722915200+07:00[Asia/Bangkok]")
 
 public class APIMethodUsersGetPresence extends HashMap<String, Object> {
   @JsonProperty("auto_away")
