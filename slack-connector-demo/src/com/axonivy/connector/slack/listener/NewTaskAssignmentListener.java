@@ -2,7 +2,6 @@ package com.axonivy.connector.slack.listener;
 
 import java.util.function.Consumer;
 
-import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.IWorkflowEvent;
 import ch.ivyteam.ivy.workflow.IWorkflowListener;
@@ -35,23 +34,23 @@ public class NewTaskAssignmentListener implements IWorkflowListener {
 				return;
 			}
 
-			if (task.getApplication().getActivityState() != ActivityState.ACTIVE) {
+			if (!task.getApplication().state().active()) {
 				return;
 			}
 
 			boolean send = false;
 			if (event.getTaskState() == TaskState.SUSPENDED && !task.activator().isSystemUser()) {
 				switch (event.getEventKind()) {
-				case EVENT_CHANGE_TASK_ACTIVATOR:
-				case EVENT_CREATE_TASK_BY_JOINED_TASKS:
-				case EVENT_CREATE_FIRST_TASK_OF_CASE:
-				case EVENT_REDO_TASK:
-				case EVENT_TASK_DELAY_EXPIRED:
-				case EVENT_CHANGE_TASK_ACTIVATOR_BY_TIMEOUT:
-					send = true;
-					break;
-				default:
-					break;
+					case EVENT_CHANGE_TASK_ACTIVATOR:
+					case EVENT_CREATE_TASK_BY_JOINED_TASKS:
+					case EVENT_CREATE_FIRST_TASK_OF_CASE:
+					case EVENT_REDO_TASK:
+					case EVENT_TASK_DELAY_EXPIRED:
+					case EVENT_CHANGE_TASK_ACTIVATOR_BY_TIMEOUT:
+						send = true;
+						break;
+					default:
+						break;
 				}
 				if (send) {
 					newTask.accept(task);
