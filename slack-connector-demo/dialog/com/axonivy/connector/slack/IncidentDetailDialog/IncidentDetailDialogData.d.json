@@ -1,0 +1,15 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
+  "simpleName" : "IncidentDetailDialogData",
+  "namespace" : "com.axonivy.connector.slack.IncidentDetailDialog",
+  "fields" : [ {
+    "name" : "channel",
+    "modifiers" : [ ]
+  }, {
+    "name" : "severity",
+    "modifiers" : [ ]
+  }, {
+    "name" : "responsible",
+    "modifiers" : [ ]
+  } ]
+}

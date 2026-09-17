@@ -10,7 +10,7 @@ public class SlackNotificationStart extends AbstractProcessStartEventBean {
 	private SlackNotifier listener;
 
 	public SlackNotificationStart() {
-		super("SlackNotificationStart", "Listenner to trigger a notification to Slack when a Task is created");
+		super("SlackNotificationStart", "Listener to trigger a notification to Slack when a Task is created");
 	}
 
 	@Override

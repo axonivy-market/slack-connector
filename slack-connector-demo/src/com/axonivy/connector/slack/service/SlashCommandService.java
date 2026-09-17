@@ -9,23 +9,22 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import javax.annotation.security.PermitAll;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MediaType;
-
 import com.axonivy.connector.slack.dto.SlashCommandData;
 import com.axonivy.connector.slack.enums.CustomField;
 import com.axonivy.connector.slack.enums.SeverityLevel;
 import com.axonivy.connector.slack.utils.SlackSignatureValidator;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
+import jakarta.annotation.security.PermitAll;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.HttpHeaders;
+import jakarta.ws.rs.core.MediaType;
+import tools.jackson.databind.ObjectMapper;
 
 @Path("/incident")
 @PermitAll

@@ -1,0 +1,13 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
+  "simpleName" : "CreateIncidentData",
+  "namespace" : "com.axonivy.connector.slack.demo",
+  "fields" : [ {
+    "name" : "severity"
+  }, {
+    "name" : "slashCommandData",
+    "type" : "com.axonivy.connector.slack.dto.SlashCommandData"
+  }, {
+    "name" : "responsible"
+  } ]
+}
